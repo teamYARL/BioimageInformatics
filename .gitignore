@@ -40,7 +40,11 @@ Thumbs.db
 # Specific to 02-740:
 #     Stuff that might be too big to download in the future
 #===============================================================================
+<<<<<<< HEAD
 *.rar
+=======
+#*.rar
+>>>>>>> Add project .tif and update readme
 #*.tif
 #*.tiff
 #*.avi
