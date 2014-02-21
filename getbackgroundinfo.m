@@ -5,8 +5,7 @@ I=imread(im)
 imshow(I,[])
 rec=getrect
 background=imcrop(I,rec)
-ds=size(background)
-mean=sum(sum(background))/(ds(1)*ds(2))
+mean=mean2(background)
 standarddeviation=std2(background)
 
 end
