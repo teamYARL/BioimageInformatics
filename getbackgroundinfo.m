@@ -1,7 +1,6 @@
 function [ mean,standarddeviation ] = getbackgroundinfo( im )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
-clear, close all
 I=imread(im);
 figure, imshow(I,[])
 rec=getrect
