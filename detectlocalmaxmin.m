@@ -20,43 +20,49 @@ I = double(I);     %double as recommended by Prof Yang
 %I = magic(5)    % testing; need to bound
 %===============================================================================
 
-dimensions=size(I)
-minmap=zeros(dimensions)
-maxmap=zeros(dimensions)
+dimensions=size(I);
+minmap=zeros(dimensions);
+maxmap=zeros(dimensions);
 
-offset=masksize/2
+offset=floor(masksize/2);
 
-for i=1+offset:dimensions[1]-offset
-    for j=1+offset:dimensions[2]-offset
+for i=1+offset:dimensions(1)-offset
+    for j=1+offset:dimensions(2)-offset
         submatrix=I(i-offset:i+offset,j-offset:j+offset)
         cpoint=I(i,j)
-        submatrix=submatrix(:)
+        submatrix=submatrix(:);
         if cpoint==max(submatrix)
-            maxmap(i,j)=1
+            maxmap(i,j)=1;
+            cpoint;
         end
-        if cpoint==mmin(submatrix)
-            minmap(i,j)=1
+        if cpoint==min(submatrix)
+            minmap(i,j)=1;
+            cpoint;
         end
-        
-        
     end
+    %if i==3
+    %    break
+    %end
 end
 
-I2 = I([1:masksize], [1:masksize])    % bound to (masksize x masksize)
-I = I2;
+localmax=minmap
+localmin=maxmap
+
+%I2 = I([1:masksize], [1:masksize])    % bound to (masksize x masksize)
+%I = I2;
 
 % init
-maxima = FALSE;
-minima = FALSE;
+%maxima = FALSE;
+%minima = FALSE;
 
 %check masksize/2; require masksize to be odd number by odd number
-if max(I) > I(masksize/2, masksize/2)
-    maxima = TRUE;
-end
+%if max(I) > I(masksize/2, masksize/2)
+%    maxima = TRUE;
+%end
 
-if min(I) > I(masksize/2, masksize/2)
-    minima = TRUE;
-end
+%if min(I) > I(masksize/2, masksize/2)
+%    minima = TRUE;
+%end
 
 
 %% [col,row] coordinates so that accessing in MATLAB is natural
