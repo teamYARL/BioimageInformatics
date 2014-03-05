@@ -1,0 +1,6 @@
+I = imread('2\images\001_a5_002_t001.tif');
+background = getbackgroundinfo(I);
+gaussMask = getguasskernalmask(I);
+I2 = conv2(I, gaussMask, 'same');
+[localMax, localMin] = detectlocalmaxmin(I2);
+DT = triangulationproject(localMin);

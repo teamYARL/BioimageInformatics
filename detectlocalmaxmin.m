@@ -28,8 +28,8 @@ offset=floor(masksize/2);
 
 for i=1+offset:dimensions(1)-offset
     for j=1+offset:dimensions(2)-offset
-        submatrix=I(i-offset:i+offset,j-offset:j+offset)
-        cpoint=I(i,j)
+        submatrix=I(i-offset:i+offset,j-offset:j+offset);
+        cpoint=I(i,j);
         submatrix=submatrix(:);
         if cpoint==max(submatrix)
             maxmap(i,j)=1;
@@ -45,8 +45,8 @@ for i=1+offset:dimensions(1)-offset
     %end
 end
 
-localmax=minmap
-localmin=maxmap
+localmax=minmap;
+localmin=maxmap;
 
 %I2 = I([1:masksize], [1:masksize])    % bound to (masksize x masksize)
 %I = I2;

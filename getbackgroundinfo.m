@@ -6,8 +6,8 @@ I=imread(im);
 figure, imshow(I,[])
 rec=getrect;
 background=imcrop(I,rec);
-mean=mean2(background)
-standarddeviation=std2(background)
+mean=mean2(background);
+standarddeviation=std2(background);
 
 end
 
