@@ -40,8 +40,13 @@ Thumbs.db
 # Specific to 02-740:
 #     Stuff that might be too big to download in the future
 #===============================================================================
-=======
 *.rar
 *.tif
 *.tiff
 *.avi
+
+# Stuff generated from MATLAB
+#===============================================================================
+
+# Auto-save file (same as .m)
+*.asv
