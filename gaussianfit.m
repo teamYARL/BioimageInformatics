@@ -27,7 +27,7 @@ Upper = [Inf,Inf, xmax, ymax]; % angles greater than 90 are redundant
 
 %% perform the fitting
 %x is the fitting result for parameters
-x = lsqcurvefit(@gaussian2D,StartPoint,xyData,zData,Lower,Upper); 
+x = lsqcurvefit('gaussian2D',StartPoint,xyData,zData,Lower,Upper); 
 % F = x(1)*exp(-((xdata-x(3))^2+(ydata-x(4))^2)/x(2));
 
 end
