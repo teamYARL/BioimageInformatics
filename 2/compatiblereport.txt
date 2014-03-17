@@ -1,0 +1,14 @@
+Alan Shteyman, names                                                                                  March 17, 2014  
+O2-740
+Project # 2: Particle Detections
+B.1)
+B.2.1)
+B.2.2)
+B.2.3)
+B.2.4)
+B.3.1)
+B.3.2)
+B.3.3)
+References
+[1] A. Ponti, P. Vallotton, W. C. Salmon, C. M. Waterman-Storer, and G. Danuser, Computational analysis of F-actin turnover in cortical actin meshworks using fluorescent speckle microscopy, Biophysical Journal, 84:3336-3352, 2003. 
+[2] M. K. Cheezum, W. F. Walker, and W. H Guilford, Quantitative comparison of algorithms for tracking single fluororescent particles, Biophysical Journal, 81:2378-2388, 2001. 
