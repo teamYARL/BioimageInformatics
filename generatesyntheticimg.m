@@ -18,16 +18,23 @@ disp('Done: filter2 Image with gaussMask')
 [ localmax, localmin ] = detectlocalmaxmin_inputMatrix( I2, masksize );
 disp('Done: detectlocalmaxmin')
 
-% TO DO: display synthetic img
+% Display synthetic img
 %intI = int8(localmax);
 syntheticImgMax = mat2gray( localmax );
 syntheticImgMin = mat2gray( localmin );
 figure, imshow( syntheticImgMax )
 figure, imshow( syntheticImgMin )
 
-syntheticImg = syntheticImgMax;
+syntheticImg = syntheticImgMin;
+
+% Overlay synthetic image on first image
+green = cat(3, zeros(size(I)), ones(size(I)), zeros(size(I)));
+hold on
+h = imshow(green);
+hold off
+set(h, 'AlphaData', syntheticImg)
 
 % TO DO: simulate actual image noise by adding white background noise
 % use `getbackgroundinfo
-backgroundNoise = 0; % something similar to localmin
+backgroundNoise = 0; % something similar to localmin (requires function from 2.1)
 

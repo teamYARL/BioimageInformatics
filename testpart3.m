@@ -8,7 +8,7 @@ I = imread(imagePath);
 %[bgMean, bgSD] = getbackgroundinfo(imagePath);
 %disp('Done: getbackgroundinfo')
 
-syntheticImg = generatesyntheticimg(I, 10);
+syntheticImg = generatesyntheticimg(I, 3);
 % Result:
 %   masksize = 3;   too much dots
 %   masksize = 100; 1 dot in localmin figure
