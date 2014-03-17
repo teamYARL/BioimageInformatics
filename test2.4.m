@@ -1,7 +1,7 @@
 clear all, close all
 
-%imagePath = '2\images\001_a5_002_t001.tif';    % Path format in Windows
-imagePath = '2/images/001_a5_002_t001.tif';     % Path format in OSX/Linux
+imagePath = '2\images\001_a5_002_t001.tif';    % Path format in Windows
+%imagePath = '2/images/001_a5_002_t001.tif';     % Path format in OSX/Linux
 I = imread(imagePath);
 
 [bgMean, bgSD] = getbackgroundinfo(imagePath);
@@ -21,5 +21,7 @@ disp('Done: detectlocalmaxmin')
 DT = triangulationproject(localMin);
 disp('Done: triangulationproject')
 
+[newlocalMax] = tTest(localMax,bgMean,bgSD,10.0);  %set Q = 10.0
+disp('Done: t test')
 
 disp('FINISHED!')
