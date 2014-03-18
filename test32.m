@@ -56,9 +56,12 @@ disp('Done: t test')
 
 %mark the new localmaxs
 
-[result,num] = interp(newlocalMax,I);
+[resultset,num] = interp(newlocalMax,I);
 
 disp('Done: interptation');
+
+num(3)
+num(4)
 %disp(XX);
 %disp(YY);
 %disp(ZZ);
