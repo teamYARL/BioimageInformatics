@@ -30,7 +30,7 @@ for j=1:3
     su=su+im(xcoor,ycoor)
 end
 
-ave=sum/3
+ave=su/3
 
 end
 
