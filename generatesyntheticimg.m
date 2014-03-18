@@ -36,5 +36,6 @@ set(h, 'AlphaData', syntheticImg)
 
 % TO DO: simulate actual image noise by adding white background noise
 % use `getbackgroundinfo
-backgroundNoise = 0; % something similar to localmin (requires function from 2.1)
+[bgMean, bgSD] = getbackgroundinfo(im)
+backgroundNoise = bgMean; % something similar to localmin (requires function from 2.1)
 
