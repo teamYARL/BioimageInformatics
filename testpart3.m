@@ -1,14 +1,14 @@
 clear all, close all
 
-%imagePath = '2\images\001_a5_002_t001.tif';    % Path format in Windows
-imagePath = '2/images/001_a5_002_t001.tif';     % Path format in OSX/Linux
+imagePath = '2\images\001_a5_002_t001.tif';    % Path format in Windows
+%imagePath = '2/images/001_a5_002_t001.tif';     % Path format in OSX/Linux
 I = imread(imagePath);
 %I = double(I);
 
 %[bgMean, bgSD] = getbackgroundinfo(imagePath);
 %disp('Done: getbackgroundinfo')
 
-syntheticImg = generatesyntheticimg(I, 3);
+syntheticImg = generatesyntheticimg(I, 3,imagePath);
 % Result:
 %   masksize = 3;   too much dots
 %   masksize = 100; 1 dot in localmin figure

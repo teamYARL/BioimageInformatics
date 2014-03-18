@@ -1,10 +1,12 @@
-function [ syntheticImg ] = generatesyntheticimg( im, masksize )
+function [ syntheticImg ] = generatesyntheticimg( im, masksize,imagePath )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 %   Usage: im = image matrix
 %          masksize = number (`3` for 3x3 mask)
 %   e.g.: im = [1 2 255; 2 3 2; 240 2 1]
 %         masksize = 3
+
+[bgMean, bgSD] = getbackgroundinfo(imagePath)
 
 I = double(im);     % Making sure matrix values are double
 
@@ -36,6 +38,11 @@ set(h, 'AlphaData', syntheticImg)
 
 % TO DO: simulate actual image noise by adding white background noise
 % use `getbackgroundinfo
-[bgMean, bgSD] = getbackgroundinfo(im)
-backgroundNoise = bgMean; % something similar to localmin (requires function from 2.1)
+
+noiseIm=imnoise(syntheticImgMax,'gaussian',bgMean,bgSD)
+
+figure
+imshow(noiseIm,[])
+syntheticImg=noiseIm
+
 
