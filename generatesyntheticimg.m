@@ -35,17 +35,28 @@ hold on
 %set(imshow, 'AlphaData', syntheticImg)
 h = imshow(green)
 hold off
-set(h)
-set(h, 'AlphaData')
-set(h, 'AlphaData', syntheticImg)
+%set(h)
+%set(h, 'AlphaData')
+%set(h, 'AlphaData', syntheticImg)
 
 % TO DO: simulate actual image noise by adding white background noise
 % use `getbackgroundinfo
 
-noiseIm=imnoise(syntheticImgMax,'gaussian',bgMean,bgSD);
+bgVar = bgSD^2;
+bgMean = bgMean;
+sum_bg = bgVar + bgMean;    % for normalizing 
+normalized_bgMean = bgMean/sum_bg
+normalized_bgVar = bgVar/sum_bg
+
+allWhiteImg = ones(size(syntheticImgMax));
+%noiseIm=imnoise(syntheticImgMax,'gaussian',normalized_bgMean, normalized_bgVar);
+noiseIm=imnoise(allWhiteImg,'gaussian',normalized_bgMean, normalized_bgVar);
+noiseIm=imcomplement( noiseIm );
+%noiseIm=imnoise(syntheticImgMax,'poisson'); %,bgMean,bgSD);
 
 %figure;
 imshow(noiseIm,[])
+disp('Done: showing noiseIm (synthetic image)')
 syntheticImg=noiseIm;
 
 
