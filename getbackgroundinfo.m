@@ -4,6 +4,7 @@ function [ mean,standarddeviation ] = getbackgroundinfo( im )
 close all
 I=imread(im);
 figure, imshow(I,[])
+disp('Please select image background')
 rec=getrect;
 background=imcrop(I,rec);
 mean=mean2(background);
