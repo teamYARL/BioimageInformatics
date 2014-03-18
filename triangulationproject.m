@@ -1,4 +1,4 @@
-function [DT] = triangulationproject(localmin)  
+function [DT,x,y] = triangulationproject(localmin)  
 
 % get the size of matrix of local mininum
 a = size(localmin);

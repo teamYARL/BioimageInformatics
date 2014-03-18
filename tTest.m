@@ -1,6 +1,8 @@
-function [ newlocalmax ] = tTest(image, localmax, DT, sigma, Q )
+function [ newlocalmax ] = tTest(image, localmax, localmin, sigma, Q )
 
 %disp(sum(sum(localmax)));
+
+[DT,x,y] = triangulationproject(localmin)
 
 tmp = size(localmax);
 rol = tmp(1);
