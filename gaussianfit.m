@@ -23,8 +23,8 @@ StartPoint = [amp, b, x0, y0, c];
 x = lsqcurvefit(gaussian2D,StartPoint,XY,zData); 
 
 % show Fitted Surface
-Z = gaussian2D(x,XY); 
-surf(X, Y, Z)
+%Z = gaussian2D(x,XY); 
+%surf(X, Y, Z)
 
 
 end

@@ -24,5 +24,5 @@ for i = 1 : rol
 end
 
 DT = delaunayTriangulation(x,y);
-figure
-triplot(DT)
+%figure
+%triplot(DT)

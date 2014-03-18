@@ -18,31 +18,7 @@ disp('Done: conv2 Image with gaussMask')
 [localMax, localMin] = detectlocalmaxmin(imagePath, 3);
 disp('Done: detectlocalmaxmin')
 
-imshow(I,[]);
-hold on
 
-tmp = size(localMax);
-rol = tmp(1);
-col = tmp(2);
-
-x=[];
-y=[];
-xx=[];
-yy=[];
-for i = 1 : rol
-    for j = 1 : col
-        if (localMax(i,j) == 1) 
-           x=[x i];
-           y=[y j]; 
-        end
-        if (localMin(i,j) == 1)
-           xx=[xx i];
-           yy=[yy j];
-        end
-    end
-end
-%plot(y,x,'o','MarkerFaceColor','green','MarkerEdgeColor','green','MarkerSize',1);
-%plot(yy,xx,'o','MarkerFaceColor','red','MarkerEdgeColor','red','MarkerSize',1);
 
 
 
@@ -51,17 +27,37 @@ end
 
 
 
-[newlocalMax] = tTest(I,localMax,localMin,bgSD,3);  %set Q = 4
+[newlocalMax] = tTest(I,localMax,localMin,bgSD,4.0);  %set Q = 4.0
 disp('Done: t test')
 
 %mark the new localmaxs
 
-[resultset,num] = interp(newlocalMax,I);
+imshow(I,[]);
+hold on
+
+tmp = size(newlocalMax);
+rol = tmp(1);
+col = tmp(2);
+
+x=[];
+y=[];
+%xx=[];
+%yy=[];
+for i = 1 : rol
+    for j = 1 : col
+        if (newlocalMax(i,j) == 1) 
+           x=[x i];
+           y=[y j]; 
+        end
+       
+    end
+end
+plot(y,x,'o','MarkerFaceColor','green','MarkerEdgeColor','green','MarkerSize',1);
+%plot(yy,xx,'o','MarkerFaceColor','red','MarkerEdgeColor','red','MarkerSize',1);
+
+[result,num] = interp(newlocalMax,I);
 
 disp('Done: interptation');
-
-num(3)
-num(4)
 %disp(XX);
 %disp(YY);
 %disp(ZZ);
