@@ -51,7 +51,7 @@ end
 
 
 
-[newlocalMax] = tTest(I,localMax,DT,bgSD,4);  %set Q = 4
+[newlocalMax] = tTest(I,localMax,DT,bgSD,3);  %set Q = 4
 disp('Done: t test')
 
 %mark the new localmaxs
