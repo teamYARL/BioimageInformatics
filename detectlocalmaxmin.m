@@ -45,6 +45,8 @@ for i=1+offset:dimensions(1)-offset
     %end
 end
 
+
+
 localmax=minmap;
 localmin=maxmap;
 
