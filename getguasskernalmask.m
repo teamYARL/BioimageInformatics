@@ -3,7 +3,10 @@ function [ mask ] = getguasskernalmask( sig )
 %   Detailed explanation goes here
 
 sizeparameter=ceil(3*sig);
-sp=sizeparameter;
+sig
+3*sig
+ceil(3*sig)
+sp=sizeparameter
 
 mask=zeros(2*sp+1,2*sp+1);
 

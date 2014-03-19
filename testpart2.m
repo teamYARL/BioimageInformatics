@@ -15,11 +15,25 @@ disp('Done: conv2 Image with gaussMask')
 % Comparing the gaussMark with sig=1 vs. sig=10 vs. sig=100, there is no
 %   change in the number of local maxima or local minima or triangles.
 
+figure, imshow(I2,[])
+
 [localMax, localMin] = detectlocalmaxmin(imagePath, 3);
 disp('Done: detectlocalmaxmin')
 
-DT = triangulationproject(localMin);
+figure, imshow(localMax,[])
+figure, imshow(localMin,[])
+
+[DT,x,y] = triangulationproject(localMin);
 disp('Done: triangulationproject')
 
+figure, triplot(DT)
+
+[ newlocalmax ] = tTest(I2, localMax, localMin, bgSD, 3 );
+disp('Done: T-test Filtering of maxima')
+
+figure, imshow(newlocalmax,[])
 
 disp('FINISHED!')
+
+
+

@@ -16,7 +16,12 @@ gaussMask = getguasskernalmask(masksize);
 %disp('Done: conv2 Image with gaussMask')
 I2 = filter2(gaussMask, im);
 disp('Done: filter2 Image with gaussMask')
+imshow(I2,[])
 
+I3=conv2(gaussMask, im);
+imshow(I3,[])
+I4= filter2(im, gaussMask);
+imshow(I4,[])
 [ localmax, localmin ] = detectlocalmaxmin_inputMatrix( I2, masksize );
 disp('Done: detectlocalmaxmin')
 
@@ -27,13 +32,13 @@ syntheticImgMin = mat2gray( localmin );
 figure, imshow( syntheticImgMax )
 figure, imshow( syntheticImgMin )
 
-syntheticImg = syntheticImgMin;
+syntheticImg = syntheticImgMin;%WHY why is this the synthetic image!?!?!?!
 figure
 % Overlay synthetic image on first image
 green = cat(3, zeros(size(I)), ones(size(I)), zeros(size(I)));
 hold on
 %set(imshow, 'AlphaData', syntheticImg)
-h = imshow(green)
+h = imshow(green,'AlphaData', syntheticImg);
 hold off
 %set(h)
 %set(h, 'AlphaData')

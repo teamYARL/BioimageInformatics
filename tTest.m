@@ -11,6 +11,7 @@ col = tmp(2);
 %tSet = [];
 
 for i = 1 : rol
+    i
     for j = 1 : col
         if (localmax(i,j) == 1) 
             mean=trianglemean(j,i,DT,x,y,image);
