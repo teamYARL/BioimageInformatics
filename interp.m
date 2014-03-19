@@ -29,10 +29,12 @@ end
 
 number = num;
 
+
+disp('entering loop');
 for k = 1 : num
     
-    disp('entering loop');
-    disp(k);
+    
+    %disp(k);
     
      [XI,YI] = meshgrid(X(k)-0.4:0.2:X(k)+0.4, Y(k)-0.4:0.2:Y(k)+0.4);
      
@@ -51,13 +53,19 @@ for k = 1 : num
      end
      
      zi = interp2(XX,YY,ZZ,XI,YI,'cubic');
-     disp(XI(1,:));
-     disp(YI(:,1));
-     disp(zi);
+     %disp(XI(1,:));
+     %disp(YI(:,1));
+     %disp(zi);
      
      result = gaussianfit(XI(1,:),YI(:,1),zi);
-     resultset = [resultset result];
-     disp(result);
+     disp(X(k));
+     disp(Y(k));
+     tmp1 = result(3)
+     tmp2 = result(4)
+     result(3) = X(k)-0.4+tmp2*0.2
+     result(4) = Y(k)-0.4+tmp1*0.2
+     resultset = [resultset result'];
+     %disp(result);
      
      
 end

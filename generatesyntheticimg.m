@@ -16,12 +16,12 @@ gaussMask = getguasskernalmask(masksize);
 %disp('Done: conv2 Image with gaussMask')
 I2 = filter2(gaussMask, im);
 disp('Done: filter2 Image with gaussMask')
-imshow(I2,[])
+figure,imshow(I2,[])
 
 I3=conv2(gaussMask, im);
-imshow(I3,[])
+figure,imshow(I3,[])
 I4= filter2(im, gaussMask);
-imshow(I4,[])
+figure,imshow(I4,[])
 [ localmax, localmin ] = detectlocalmaxmin_inputMatrix( I2, masksize );
 disp('Done: detectlocalmaxmin')
 
@@ -32,7 +32,8 @@ syntheticImgMin = mat2gray( localmin );
 figure, imshow( syntheticImgMax )
 figure, imshow( syntheticImgMin )
 
-syntheticImg = syntheticImgMin;%WHY why is this the synthetic image!?!?!?!
+syntheticImg = syntheticImgMin;%WHY why is this the synthetic image!?!?!?! Its wrong
+syntheticImg = syntheticImgMax;
 figure
 % Overlay synthetic image on first image
 green = cat(3, zeros(size(I)), ones(size(I)), zeros(size(I)));
@@ -47,16 +48,17 @@ hold off
 % TO DO: simulate actual image noise by adding white background noise
 % use `getbackgroundinfo
 
-bgVar = bgSD^2;
-bgMean = bgMean;
-sum_bg = bgVar + bgMean;    % for normalizing 
-normalized_bgMean = bgMean/sum_bg
-normalized_bgVar = bgVar/sum_bg
+%this is all wrong why did you do this?!?!?!?!?
+%bgVar = bgSD^2;
+%bgMean = bgMean;
+%sum_bg = bgVar + bgMean;    % for normalizing 
+%normalized_bgMean = bgMean/sum_bg
+%normalized_bgVar = bgVar/sum_bg
 
-allWhiteImg = ones(size(syntheticImgMax));
+%allWhiteImg = ones(size(syntheticImgMax));
 %noiseIm=imnoise(syntheticImgMax,'gaussian',normalized_bgMean, normalized_bgVar);
-noiseIm=imnoise(allWhiteImg,'gaussian',normalized_bgMean, normalized_bgVar);
-noiseIm=imcomplement( noiseIm );
+noiseIm=imnoise(syntheticImg,'gaussian',bgMean,bgSD);
+%noiseIm=imcomplement( noiseIm );
 %noiseIm=imnoise(syntheticImgMax,'poisson'); %,bgMean,bgSD);
 
 %figure;

@@ -28,7 +28,7 @@ disp('Done: triangulationproject')
 
 figure, triplot(DT)
 
-[ newlocalmax ] = tTest(I2, localMax, localMin, bgSD, 3 );
+[ newlocalmax ] = tTest(I2, localMax, localMin, bgSD, 5 );
 disp('Done: T-test Filtering of maxima')
 
 figure, imshow(newlocalmax,[])

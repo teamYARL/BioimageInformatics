@@ -17,5 +17,16 @@ syntheticImg = generatesyntheticimg(I, 3,imagePath);
 
 % Display original image for comparison ( mainly for testing )
 figure, imshow(I,[])
+figure, imshow(syntheticImg,[])
+
+gaussMask = getguasskernalmask(1.18);
+disp('Done: getguasskernalmask')
+
+I2 = conv2(double(I), gaussMask, 'same');       % To Do: change I to double(I) in all functions
+disp('Done: conv2 Image with gaussMask')
+
+[localMax, localMin] = detectlocalmaxmin(imagePath, 3)
+
+[ resultset,number] = interp( localmax, I2 )
 
 disp('FINISHED!')
