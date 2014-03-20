@@ -10,8 +10,8 @@ function [ localmax, localmin ] = detectlocalmaxmin( im, masksize )
 
 
 %close all
-I = imread(im);
-I = double(I);     %double as recommended by Prof Yang
+%I = imread(im);
+I = double(im);     %double as recommended by Prof Yang
 
 % TESTING
 %===============================================================================
