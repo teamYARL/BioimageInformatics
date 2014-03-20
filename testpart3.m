@@ -1,7 +1,7 @@
 clear all, close all
 
-imagePath = '2\images\001_a5_002_t001.tif';    % Path format in Windows
-%imagePath = '2/images/001_a5_002_t001.tif';     % Path format in OSX/Linux
+%imagePath = '2\images\001_a5_002_t001.tif';    % Path format in Windows
+imagePath = '2/images/001_a5_002_t001.tif';     % Path format in OSX/Linux
 I = imread(imagePath);
 %I = double(I);
 
@@ -16,8 +16,8 @@ syntheticImg = generatesyntheticimg(I, 3,imagePath);
 %       TO DO: check function that generated localmax and localmin
 
 % Display original image for comparison ( mainly for testing )
-figure, imshow(I,[])
-figure, imshow(syntheticImg,[])
+figure('Name', 'Original image'), imshow(I,[])
+figure('Name', 'Synthetic image'), imshow(syntheticImg,[])
 
 gaussMask = getguasskernalmask(1.18);
 disp('Done: getguasskernalmask')
