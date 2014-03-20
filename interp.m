@@ -51,16 +51,17 @@ for k = 1 : num
      end
      
      zi = interp2(XX,YY,ZZ,XI,YI,'cubic');
-     disp(XI(1,:));
-     disp(YI(:,1));
-     disp(zi);
+     %disp(XI(1,:));
+     %disp(YI(:,1));
+     %disp(zi);
      
      result = gaussianfit(1:5,1:5,zi);
-     disp(X(k)-0.4);
-     disp(Y(k)-0.4);
+     %disp(X(k)-0.4);
+     %disp(Y(k)-0.4);
      
-     %result(3) = (X(k)-0.4+result(3)*0.2);
-     %result(4) = (Y(k)-0.4+result(4)*0.2);
+     result(3) = (X(k)-0.4+result(3)*0.2); % the absolute x-coordinate of the center
+     result(4) = (Y(k)-0.4+result(4)*0.2); % the absolute y-coordinate of teh center
+     %resultset is the vector of results, for each result, result(3)=x0, result(4)=y0 
      resultset = [resultset result'];
      disp(result);
      
