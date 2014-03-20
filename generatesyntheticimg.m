@@ -1,8 +1,7 @@
 function [ syntheticImg ] = generatesyntheticimg( im, masksize,imagePath )
 %UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
 %   Usage: im = image matrix
-%          masksize = number (`3` for 3x3 mask)
+%          masksize = number (e.g. `3` for 3x3 mask)
 %   e.g.: im = [1 2 255; 2 3 2; 240 2 1]
 %         masksize = 3
 
