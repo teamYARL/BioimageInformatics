@@ -48,7 +48,7 @@ x=[];
 y=[];
 for i =1:ro
     for j=1:co
-        if localMax(i,j)==1
+        if localMin(i,j)==1
             x=[x,i];
             y=[y,j];
         end
