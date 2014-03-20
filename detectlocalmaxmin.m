@@ -33,11 +33,11 @@ for i=1+offset:dimensions(1)-offset
         submatrix=submatrix(:);
         if cpoint==max(submatrix)
             maxmap(i,j)=1;
-            cpoint;
+            %cpoint;
         end
         if cpoint==min(submatrix)
             minmap(i,j)=1;
-            cpoint;
+            %cpoint;
         end
     end
     %if i==3

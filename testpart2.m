@@ -20,9 +20,9 @@ figure, imshow(I2,[])
 [localMax, localMin] = detectlocalmaxmin(I2, 5);
 disp('Done: detectlocalmaxmin')
 
-di=size(I2)
-ro=di(1)
-co=di(2)
+di=size(I2);
+ro=di(1);
+co=di(2);
 
 figure, 
 imshow(I,[])
@@ -75,8 +75,8 @@ Y=[];
 for i =1:ro
     for j=1:co
         if newlocalmax(i,j)==1
-            X=[X,i]
-            Y=[Y,j]
+            X=[X,i];
+            Y=[Y,j];
         end
     end
 end
