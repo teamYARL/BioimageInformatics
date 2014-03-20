@@ -27,6 +27,6 @@ disp('Done: conv2 Image with gaussMask')
 
 [localMax, localMin] = detectlocalmaxmin(imagePath, 3)
 
-[ resultset,number] = interp( localmax, I2 )
+[resultset, number] = interp( localmax, I2 )
 
 disp('FINISHED!')
