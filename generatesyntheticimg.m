@@ -9,8 +9,9 @@ I = double(im);     % Making sure matrix values are double
 gaussMask = getguasskernalmask(masksize);
 
 I2 = conv2(I,gaussMask, 'same');
-disp('Done: conv2 Image with gaussMask')
-figure('Name', 'Convolved original image with Gaussian'), imshow(I2,[]);
+%disp('Done: conv2 Image with gaussMask')
+%figure('Name', 'Convolved original image with Gaussian'), imshow(I2,[]);
+
 [ localmax, localmin ] = detectlocalmaxmin(I2, masksize);
 disp('Done: detectlocalmaxmin')
 
@@ -35,6 +36,6 @@ end
 
 % Convolve localmax pixels with Gaussian
 syntheticImg = conv2(localmax, gaussMask, 'same');
-figure('Name', 'Part 3.1: Synthetic Image'), imshow(syntheticImg, [])
+%figure('Name', 'Part 3.1: Synthetic Image'), imshow(syntheticImg, [])
 
 end
