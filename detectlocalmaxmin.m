@@ -47,8 +47,8 @@ end
 
 
 
-localmax=minmap;
-localmin=maxmap;
+localmax=maxmap;
+localmin=minmap;
 
 %I2 = I([1:masksize], [1:masksize])    % bound to (masksize x masksize)
 %I = I2;

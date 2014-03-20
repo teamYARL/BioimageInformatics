@@ -18,10 +18,10 @@ I2 = filter2(gaussMask, im);
 disp('Done: filter2 Image with gaussMask')
 figure,imshow(I2,[])
 
-I3=conv2(gaussMask, im);
-figure,imshow(I3,[])
+I2=conv2(I,gaussMask);
+figure,imshow(I2,[]);
 I4= filter2(im, gaussMask);
-figure,imshow(I4,[])
+figure,imshow(I4,[]);
 [ localmax, localmin ] = detectlocalmaxmin_inputMatrix( I2, masksize );
 disp('Done: detectlocalmaxmin')
 
@@ -29,18 +29,21 @@ disp('Done: detectlocalmaxmin')
 %intI = int8(localmax);
 syntheticImgMax = mat2gray( localmax );
 syntheticImgMin = mat2gray( localmin );
-figure, imshow( syntheticImgMax )
-figure, imshow( syntheticImgMin )
+
+syntheticImgMaxConv = filter2(gaussMask, syntheticImgMax);
+syntheticImgMinConv = filter2(gaussMask, syntheticImgMin);
+figure('Name', 'Max'), imshow( syntheticImgMaxConv , [])
+figure('Name', 'Min'), imshow( syntheticImgMinConv , [])
 
 syntheticImg = syntheticImgMin;%WHY why is this the synthetic image!?!?!?! Its wrong
 syntheticImg = syntheticImgMax;
-figure
+%figure
 % Overlay synthetic image on first image
-green = cat(3, zeros(size(I)), ones(size(I)), zeros(size(I)));
-hold on
+%green = cat(3, zeros(size(I)), ones(size(I)), zeros(size(I)));
+%hold on
 %set(imshow, 'AlphaData', syntheticImg)
-h = imshow(green,'AlphaData', syntheticImg);
-hold off
+%h = imshow(green,[])%,'AlphaData', syntheticImg);
+%hold off
 %set(h)
 %set(h, 'AlphaData')
 %set(h, 'AlphaData', syntheticImg)

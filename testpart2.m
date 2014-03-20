@@ -74,13 +74,13 @@ X=[];
 Y=[];
 for i =1:ro
     for j=1:co
-        if newlocalMax(i,j)==1
-            X=[X,i];
-            Y=[Y,j];
+        if newlocalmax(i,j)==1
+            X=[X,i]
+            Y=[Y,j]
         end
     end
 end
-plot(y, x, 'r+');
+plot(Y, X, 'r+');
 
 %imshow(newlocalmax,[])
 %hold off
