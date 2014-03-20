@@ -38,7 +38,7 @@ for i =1:ro
 end
 
 hold on
-plot (y,x,'o')
+plot (y,x,'o','MarkerEdgeColor','green')
 %imshow(localMax,[])
 hold off
 
@@ -55,7 +55,7 @@ for i =1:ro
     end
 end
 hold on
-plot (y,x,'o')
+plot (y,x,'o','MarkerEdgeColor','green')
 %imshow(localMin,[])
 hold off
 
@@ -80,7 +80,7 @@ for i =1:ro
         end
     end
 end
-plot(Y, X, 'r+');
+plot(Y, X, 'o', 'MarkerEdgeColor','green');
 
 %imshow(newlocalmax,[])
 %hold off
