@@ -1,6 +1,11 @@
-function [ resultset,number] = interp( localmax, I, bg )
+function [ resultset,number,centerX, centerY] = interp( localmax, I, bg )
 
 resultset = [];
+
+%vector to store the x coordinate of the center 
+centerX = [];
+%vector to store the y coordinate of the center
+centerY = [];
 
 tmp = size(localmax);
 rol = tmp(1);
@@ -65,5 +70,6 @@ for k = 1 : num
      resultset = [resultset result'];
      disp(result);
      
-     
+     centerX = [centerX result(3)];
+     centerY = [centerY result(4)];
 end
