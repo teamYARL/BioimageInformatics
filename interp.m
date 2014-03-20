@@ -1,4 +1,4 @@
-function [ resultset,number] = interp( localmax, I )
+function [ resultset,number] = interp( localmax, I, bg )
 
 resultset = [];
 
@@ -15,8 +15,8 @@ num = 0;
 for i = 1 : rol
     for j = 1 : col
         if (localmax(i,j) == 1) 
-            X = [X i];
-            Y = [Y j];
+            X = [X j];
+            Y = [Y i];
             Z = [Z I(i,j)];
             num = num+1;
         end
@@ -29,12 +29,10 @@ end
 
 number = num;
 
-
-disp('entering loop');
 for k = 1 : num
     
-    
-    %disp(k);
+    disp('entering loop');
+    disp(k);
     
      [XI,YI] = meshgrid(X(k)-0.4:0.2:X(k)+0.4, Y(k)-0.4:0.2:Y(k)+0.4);
      
@@ -48,24 +46,23 @@ for k = 1 : num
      YY = [Y(k)-1,Y(k),Y(k)+1];
      for i = -1:1:1
          for j = -1:1:1
-             ZZ(i+2,j+2) = I(X(k)+i, Y(k)+j);
+             ZZ(i+2,j+2) = I(Y(k)+i, X(k)+j) - bg;
          end
      end
      
      zi = interp2(XX,YY,ZZ,XI,YI,'cubic');
-     %disp(XI(1,:));
-     %disp(YI(:,1));
-     %disp(zi);
+     disp(XI(1,:));
+     disp(YI(:,1));
+     disp(zi);
      
-     result = gaussianfit(XI(1,:),YI(:,1),zi);
-     disp(X(k));
-     disp(Y(k));
-     tmp1 = result(3)
-     tmp2 = result(4)
-     result(3) = X(k)-0.4+tmp2*0.2
-     result(4) = Y(k)-0.4+tmp1*0.2
+     result = gaussianfit(1:5,1:5,zi);
+     disp(X(k)-0.4);
+     disp(Y(k)-0.4);
+     
+     %result(3) = (X(k)-0.4+result(3)*0.2);
+     %result(4) = (Y(k)-0.4+result(4)*0.2);
      resultset = [resultset result'];
-     %disp(result);
+     disp(result);
      
      
 end
