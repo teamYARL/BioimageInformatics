@@ -1,3 +1,7 @@
+% use Accuracy = mean( distanceDifference:LIST )
+% use Precision = SD( distanceDiffence:LIST )
+%===============================================================================
+% Ignore this:
 % Accuracy
 %   = (TruePositive + TrueNegative) / (Postives + Negatives)
 %
@@ -59,6 +63,9 @@ end
 
 %===============================================================================
 % Nearest-neighbor to get distance difference between originalImg vs. syntheticImg
+%   1. for each center in originalImg (has less centers), find nearest center in syntheticImg (has more centers) (output: list)
+%   2. calculate the distance (input: list; output: list)
+%   3. calculate mean and SD of the distances (input: list; output: [mean, SD]
 %===============================================================================
 % check tutorial on how to do:
 %   http://www.mathworks.com/help/stats/knnsearch.html
