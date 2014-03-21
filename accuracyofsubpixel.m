@@ -1,32 +1,39 @@
-function [ output_args ] = accuracyofsubpixel( im ,listmax )
+function [ Xcoordinate, Ycoordinate ] = accuracyofsubpixel( I )
 %UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+%   input:
+%       I is matrix
+%   output:
+%       mean is double/float
+%       sd is double/float
 
-% this is part 3.3
+%===============================================================================
+% this is part 3.3 along with part33.m
+%===============================================================================
 % figure out accuracy and precision by
 %   overlay result from 3.2 with SyntheticImg from 3.1
 %   find distance difference between their maxima
 
-% Assuming original image's centerX and centerY is already in the .mat to compare
 % Generate coordinates for SyntheticImg
+I = double(I);
+[bgMean, bgSD] = getbackgroundinfo_inputIsMatrix(I);
+disp('Done: getbackgroundinfo')
+
+gaussMask = getguasskernalmask(1.18);
+disp('Done: getguasskernalmask')
+
+I2 = conv2(double(I), gaussMask, 'same');
+disp('Done: conv2 Image with gaussMask')
+
+[localMax, localMin] = detectlocalmaxmin(I2, 5);
+disp('Done: detectlocalmaxmin')
+
+di=size(I2);
+ro=di(1);
+co=di(2);
+
 
 [ newlocalmax ] = tTest(I2, localMax, localMin, bgSD, 4.0 );  % Q = 4.0
 disp('Done: T-test Filtering of maxima')
-
-figure('Name', 't-test Filtered Local Maxima'),
-imshow(I,[])
-hold on
-X=[];
-Y=[];
-for i =1:ro
-    for j=1:co
-        if newlocalmax(i,j)==1
-            X=[X,i];
-            Y=[Y,j];
-        end
-    end
-end
-plot(Y, X,'red+');
 
 [result, num, centerX, centerY] = interp(newlocalmax,I, bgMean);
 disp('Done: interptation');
@@ -37,14 +44,10 @@ imshow(I,[])
 hold on
 
 plot(centerX, centerY,'green+');
-
 disp('FINISHED!')
 
-
-nummax=length(listmax)  % Is listmax == list of maxima's coordinates?
-for i=1:nummax
-    for j=1
-end
+Xcoordinate = centerX;
+Ycoordinate = centerY;
 
 end
 
