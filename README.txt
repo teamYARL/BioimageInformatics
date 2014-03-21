@@ -20,6 +20,7 @@ Run testpart2.m to check all the results for part 2
 Run testpart3.m to check all the results for part 3.1,
 test32 to check the result of part 3.2
 
-In the result file, it contains the images got all the way until 3.2, which includes localMaxs,localMins,filtered local maximums and sub-pixel detection result.
+In the result file, it contains the images got all the way until 3.2, which includes localMaxs,localMins,
+filtered local maximums and sub-pixel detection result.
 
 For other tests, they would test their related problem
