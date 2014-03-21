@@ -18,13 +18,21 @@ masksize = 5;
 I = imread(imagePath);
 I = double(I);
 
-% Get X, Y for original image
+
+
+%===============================================================================
+% Get X, Y coordinates for original and synthetic images
+%===============================================================================
 [originalImgCoord_X, originalImgCoord_Y] = accuracyofsubpixel(I);
 
-% Get X, Y for synthetic image
 syntheticImg = generatesyntheticimg(I, masksize, imagePath);
 [syntheticImgCoord_X, syntheticImgCoord_Y] = accuracyofsubpixel(syntheticImg);
 
+
+
+%===============================================================================
+% count
+%===============================================================================
 size_original = size(originalImgCoord_X);
 size_synthetic = size(syntheticImgCoord_X);
 count_original = size_original(2);
@@ -32,3 +40,27 @@ count_synthetic = size_synthetic(2);
 
 countDifference =  count_original - count_synthetic;
 
+
+
+%===============================================================================
+% Turn X,Y vectors to coordinate system; (X, Y)
+%===============================================================================
+originalImgCoord = [];
+for i=1:count_original
+    originalImgCoord = [originalImgCoord ; [originalImgCoord_X(i), originalImgCoord_Y(i)] ];
+end
+
+syntheticImgCoord = [];
+for i=1:count_synthetic
+    syntheticImgCoord = [syntheticImgCoord ; [syntheticImgCoord_X(i), syntheticImgCoord_Y(i)] ];
+end
+
+
+
+%===============================================================================
+% Nearest-neighbor to get distance difference between originalImg vs. syntheticImg
+%===============================================================================
+% check tutorial on how to do:
+%   http://www.mathworks.com/help/stats/knnsearch.html
+%   TO DO: figure out how to use n and d, or need to use another algo instead
+[n,d]=knnsearch(originalImgCoord, syntheticImgCoord, 'k',10, 'distance','minkowski', 'p',5);
