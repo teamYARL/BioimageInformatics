@@ -17,6 +17,8 @@ B 3.3: accuracyofsubpixel.m
 
 For each test, you can run it to check the results
 Run testpart2.m to check all the results for part 2
-Run testpart3.m to check all the results for part 3
+Run testpart3.m to check all the results for part 3.1,
+test32 to check the result of part 3.2
+
 
 For other tests, they would test their related problem
