@@ -31,3 +31,4 @@ count_original = size_original(2);
 count_synthetic = size_synthetic(2);
 
 countDifference =  count_original - count_synthetic;
+

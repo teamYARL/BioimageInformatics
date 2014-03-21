@@ -13,7 +13,7 @@ function [ Xcoordinate, Ycoordinate ] = accuracyofsubpixel( I )
 %   overlay result from 3.2 with SyntheticImg from 3.1
 %   find distance difference between their maxima
 
-% Generate coordinates for SyntheticImg
+% Generate coordinates for image I
 I = double(I);
 [bgMean, bgSD] = getbackgroundinfo_inputIsMatrix(I);
 disp('Done: getbackgroundinfo')
@@ -50,4 +50,3 @@ Xcoordinate = centerX;
 Ycoordinate = centerY;
 
 end
-
