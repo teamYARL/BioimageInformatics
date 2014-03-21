@@ -1,7 +1,7 @@
 clear all, close all
 
-imagePath = '2\images\001_a5_002_t001.tif'; % Path format in Windows
-%imagePath = '2/images/001_a5_002_t001.tif'; % Path format in OSX/Linux
+%imagePath = '2\images\001_a5_002_t001.tif'; % Path format in Windows
+imagePath = '2/images/001_a5_002_t001.tif'; % Path format in OSX/Linux
 I = imread(imagePath);
 
 [bgMean, bgSD] = getbackgroundinfo(imagePath);
@@ -15,7 +15,7 @@ disp('Done: conv2 Image with gaussMask')
 % Comparing the gaussMark with sig=1 vs. sig=10 vs. sig=100, there is no
 % change in the number of local maxima or local minima or triangles.
 
-figure, imshow(I2,[])
+figure('Name', 'Convolved original image with Gaussian (blur)'), imshow(I2,[])
 
 [localMax, localMin] = detectlocalmaxmin(I2, 5);
 disp('Done: detectlocalmaxmin')
@@ -24,7 +24,7 @@ di=size(I2);
 ro=di(1);
 co=di(2);
 
-figure,
+figure('Name', 'Local Maxima'),
 imshow(I,[])
 x=[];
 y=[];
@@ -42,7 +42,7 @@ plot (y,x,'o','MarkerEdgeColor','red')
 %imshow(localMax,[])
 hold off
 
-figure,
+figure('Name', 'Local Minima'),
 imshow(I,[])
 x=[];
 y=[];
@@ -62,12 +62,12 @@ hold off
 [DT,x,y] = triangulationproject(localMin);
 disp('Done: triangulationproject')
 
-figure, triplot(DT)
+figure('Name', 'Triangulation of Local Minima'), triplot(DT)
 
 [ newlocalmax ] = tTest(I2, localMax, localMin, bgSD, 4.0 );  % Q = 4.0
 disp('Done: T-test Filtering of maxima')
 
-figure,
+figure('Name', 't-test Filtered Local Maxima'),
 imshow(I,[])
 hold on
 X=[];
@@ -110,7 +110,7 @@ disp('Done: interptation');
 
 disp('Done: gaussian fitting');
 
-figure,
+figure('Name', 'Sub-pixel Center'),
 imshow(I,[])
 hold on
 
