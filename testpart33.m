@@ -62,6 +62,30 @@ end
 
 
 %===============================================================================
+% Calculate mean and SD
+%===============================================================================
+originalMean = mean(originalImgCoord);
+originalSD = std(originalImgCoord);
+syntheticMean = mean(syntheticImgCoord);
+syntheticSD = std(syntheticImgCoord);
+
+fprintf('Original image mean coordinates are:\n (%f, %f)\n', originalMean(1), originalMean(2) )
+fprintf('The standard deviation of the coordinates are:\n (%f, %f)\n', originalSD(1), originalSD(2) )
+
+fprintf('Synthetic image mean coordinates are:\n (%f, %f)\n', syntheticMean(1), syntheticMean(2) )
+fprintf('The standard deviation of the coordinates are:\n (%f, %f)\n', syntheticSD(1), syntheticSD(2) )
+
+% Calculate accuracy and precision
+accuracy = (originalMean - syntheticMean) ./ syntheticMean * 100;    % in percentage
+precision = (originalSD - syntheticSD) ./ syntheticSD * 100;         % in percentage
+fprintf('\n')
+fprintf('The accuracy of the original image from ground truth is:\n (%f%%, %f%%)\n', accuracy(1), accuracy(2) ) 
+fprintf('The precision of the original image from ground truth is:\n (%f%%, %f%%)\n', precision(1), precision(2) ) 
+
+
+
+%===============================================================================
+% Ignore: Following is not needed
 % Nearest-neighbor to get distance difference between originalImg vs. syntheticImg
 %   1. for each center in originalImg (has less centers), find nearest center in syntheticImg (has more centers) (output: list)
 %   2. calculate the distance (input: list; output: list)
@@ -70,4 +94,4 @@ end
 % check tutorial on how to do:
 %   http://www.mathworks.com/help/stats/knnsearch.html
 %   TO DO: figure out how to use n and d, or need to use another algo instead
-[n,d]=knnsearch(originalImgCoord, syntheticImgCoord, 'k',10, 'distance','minkowski', 'p',5);
+%[n,d]=knnsearch(originalImgCoord, syntheticImgCoord, 'k',10, 'distance','minkowski', 'p',5);
