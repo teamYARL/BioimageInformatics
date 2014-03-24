@@ -17,6 +17,7 @@ for k = 1:num_images
         % can be cropped in the same place
         imshow(A);
         rec=getrect;
+        close;
     end
     cro=imcrop(A,rec);
     pics{k}=A;

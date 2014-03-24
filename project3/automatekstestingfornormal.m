@@ -58,7 +58,7 @@ close;
 
 
 imagePath='imagesfromproj1\image02.tiff';
-[pic,crop]=image02ROI(imagePath)
+[pic,crop]=image02ROI(imagePath);
 %I = imread(imagePath);
 %I=double(I);
 disp ('now')
@@ -68,7 +68,7 @@ for chan=1:2
 
     rect = getrect();
     croppedRegion = imcrop(crop{chan}, rect);
-    croppedRegion=double(croppedRegion)
+    croppedRegion=double(croppedRegion);
     class(croppedRegion)
     kstest(croppedRegion)
     close;
