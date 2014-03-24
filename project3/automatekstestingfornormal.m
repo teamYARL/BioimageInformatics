@@ -1,14 +1,14 @@
 croppedstr='CroppedImages\cropped_APPYFPX_Lgt_a07r10s01_'
 names=[];
-for num = 100001:100150
-    num= int2str(num);
-    num=num(end-2:end);
+for i = 1:150
+    num = sprintf('%03d',i);
     names=[names, strcat(croppedstr,num ,'.tif'), '   '];
 end
 sepnames=strsplit(names);
 sepnames=sepnames(1:end-1);
 numfiles=length(sepnames)
 
+%% B2.1
 kstests=[];
 means=[];
 stds=[];
@@ -27,6 +27,29 @@ plot(means)
 plot(stds)
 
 
+%% B2.2
+
+kstests2=[];
+for j=1:numfiles-1
+    % first cropped background
+    back1=imread(sepnames{j});
+    back1=double(back1);
+    size1 = numel(back1);
+    back1=reshape(back1',1,size1);
+
+    % second cropped background
+    back2=imread(sepnames{j+1});
+    back2=double(back2);
+    size2 = numel(back2);
+    back2=reshape(back2',1,size2);
+    
+    kstests2=[kstests2, kstest2(back1,back2)];
+end
+sum(kstests2)
+
+
+
+%% B2.3
 
 spacemeans=[];
 spacestds=[];
