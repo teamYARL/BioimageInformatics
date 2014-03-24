@@ -49,8 +49,8 @@ end
 
 imagePath='imagesfromproj1\image01.tiff';
 I = imread(imagePath);
-I=double(I)
-figure('Name', strcat('Please select the background of this image to be saved'), imshow(I, [])
+I=double(I);
+figure('Name', strcat('Please select the background of this image to be saved')), imshow(I, [])
 rect = getrect();
 croppedRegion = imcrop(I, rect);
 kstest(croppedRegion)
@@ -59,7 +59,7 @@ close;
 
 imagePath='imagesfromproj1\image02.tiff';
 I = imread(imagePath);
-I=double(I)
+I=double(I);
 for chan=1:2
     figure('Name', strcat('Please select the background of this image to be saved - channel: ',int2str(chan))), imshow(I, [])
 
