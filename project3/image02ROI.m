@@ -1,5 +1,5 @@
 function [ pics,crops ] = image02ROI( imname )
-%Question3.2 from project 1
+%Question3.2 from project 1 by alan
 % crop the image in all channels
 % get image and metadata
 mtif=imname;
