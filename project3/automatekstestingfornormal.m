@@ -30,17 +30,19 @@ plot(stds)
 
 spacemeans=[]
 spacestds=[]
-imagePath=sepnames{i};
+samples=cell(1,5)
+imagePath='microscope_char\DrosophilaVesicleTransport\APPYFPX_Lgt_a07r10s01_001.tif';
 I = imread(imagePath);
-for samples=1:5
-figure('Name', strcat('Please select the background of this image to be saved - sample: ',int2str(samples))), imshow(I, [])
+for sample=1:5
+figure('Name', strcat('Please select the background of this image to be saved - sample: ',int2str(sample))), imshow(I, [])
 
 rect = getrect();
 croppedRegion = imcrop(I, rect);
 spacemeans=[spacemeans mean2(croppedRegion)]
-spacemeans=[spacemeans mean2(croppedRegion)]
+spacestds=[spacestds std2(croppedRegion)]
+samples(sample)=mat2cell(croppedRegion)
 
+close;
 
 end
-close;
 
