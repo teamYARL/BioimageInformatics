@@ -41,7 +41,8 @@ rect = getrect();
 croppedRegion = imcrop(I, rect);
 spacemeans=[spacemeans mean2(croppedRegion)]
 spacestds=[spacestds std2(croppedRegion)]
-samples(sample)=mat2cell(croppedRegion)
+di=size(croppedRegion)
+samples(sample)=mat2cell(croppedRegion,di(2),di(1))
 
 close;
 
