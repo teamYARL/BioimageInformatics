@@ -25,3 +25,22 @@ sum(kstests)
 
 plot(means)
 plot(stds)
+
+
+
+spacemeans=[]
+spacestds=[]
+imagePath=sepnames{i};
+I = imread(imagePath);
+for samples=1:5
+figure('Name', strcat('Please select the background of this image to be saved - sample: ',int2str(samples))), imshow(I, [])
+
+rect = getrect();
+croppedRegion = imcrop(I, rect);
+spacemeans=[spacemeans mean2(croppedRegion)]
+spacemeans=[spacemeans mean2(croppedRegion)]
+
+
+end
+close;
+
