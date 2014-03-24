@@ -41,7 +41,7 @@ Thumbs.db
 #     Stuff that might be too big to download in the future
 #===============================================================================
 *.rar
-#*.tif
+*.tif
 *.tiff
 *.avi
 
