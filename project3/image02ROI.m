@@ -21,7 +21,7 @@ for k = 1:num_images
     cro=imcrop(A,rec);
     pics{k}=A;
     imwrite(cro,strcat('image02-',int2str(k),'.tiff'));
-    crops{k+num_images}=cro;
+    crops{k}=cro;
 end
 end
 

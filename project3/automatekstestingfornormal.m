@@ -28,11 +28,11 @@ plot(stds)
 
 
 
-spacemeans=[]
-spacestds=[]
-samples=cell(1,5)
+spacemeans=[];
+spacestds=[];
+samples=cell(1,5);
 imagePath='microscope_char\DrosophilaVesicleTransport\APPYFPX_Lgt_a07r10s01_001.tif';
-I=double(I)
+I=double(I);
 I = imread(imagePath);
 for sample=1:5
 figure('Name', strcat('Please select the background of this image to be saved - sample: ',int2str(sample))), imshow(I, [])
@@ -58,13 +58,18 @@ close;
 
 
 imagePath='imagesfromproj1\image02.tiff';
-I = imread(imagePath);
-I=double(I);
+[pic,crop]=image02ROI(imagePath)
+%I = imread(imagePath);
+%I=double(I);
+disp ('now')
+
 for chan=1:2
-    figure('Name', strcat('Please select the background of this image to be saved - channel: ',int2str(chan))), imshow(I, [])
+    figure('Name', strcat('Please select the background of this image to be saved - channel: ',int2str(chan))), imshow(crop{chan}, [])
 
     rect = getrect();
-    croppedRegion = imcrop(I, rect);
+    croppedRegion = imcrop(crop{chan}, rect);
+    croppedRegion=double(croppedRegion)
+    class(croppedRegion)
     kstest(croppedRegion)
     close;
 end
