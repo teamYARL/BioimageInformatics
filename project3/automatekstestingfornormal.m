@@ -32,6 +32,7 @@ spacemeans=[]
 spacestds=[]
 samples=cell(1,5)
 imagePath='microscope_char\DrosophilaVesicleTransport\APPYFPX_Lgt_a07r10s01_001.tif';
+I=double(I)
 I = imread(imagePath);
 for sample=1:5
 figure('Name', strcat('Please select the background of this image to be saved - sample: ',int2str(sample))), imshow(I, [])
@@ -46,3 +47,24 @@ close;
 
 end
 
+imagePath='imagesfromproj1\image01.tiff';
+I = imread(imagePath);
+I=double(I)
+figure('Name', strcat('Please select the background of this image to be saved'), imshow(I, [])
+rect = getrect();
+croppedRegion = imcrop(I, rect);
+kstest(croppedRegion)
+close;
+
+
+imagePath='imagesfromproj1\image02.tiff';
+I = imread(imagePath);
+I=double(I)
+for chan=1:2
+    figure('Name', strcat('Please select the background of this image to be saved - channel: ',int2str(chan))), imshow(I, [])
+
+    rect = getrect();
+    croppedRegion = imcrop(I, rect);
+    kstest(croppedRegion)
+    close;
+end
