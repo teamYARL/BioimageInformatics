@@ -3,5 +3,5 @@ names=[]
 for num = 100001:100150
     num= int2str(num)
     num=num(end-2:end)
-    names=[names strcat(cropstr,num ,'.tif')]
+    names=[names, '   ', strcat(cropstr,num ,'.tif')]
 end
