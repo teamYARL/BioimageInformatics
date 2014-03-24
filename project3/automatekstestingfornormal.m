@@ -1,4 +1,4 @@
-croppedstr='CroppedImages\cropped_APPYFPX_Lgt_a07r10s01_'
+croppedstr=['CroppedImages', filesep, 'cropped_APPYFPX_Lgt_a07r10s01_'];
 names=[];
 for i = 1:150
     num = sprintf('%03d',i);
@@ -54,7 +54,7 @@ sum(kstests2)
 spacemeans=[];
 spacestds=[];
 samples=cell(1,5);
-imagePath='microscope_char\DrosophilaVesicleTransport\APPYFPX_Lgt_a07r10s01_001.tif';
+imagePath=['microscope_char', filesep, 'DrosophilaVesicleTransport', filesep, 'APPYFPX_Lgt_a07r10s01_001.tif'];
 I=double(I);
 I = imread(imagePath);
 for sample=1:5
@@ -71,7 +71,7 @@ close;
 
 end
 
-imagePath='imagesfromproj1\image01.tiff';
+imagePath=['imagesfromproj1', filesep, 'image01.tiff'];
 I = imread(imagePath);
 I=double(I);
 figure('Name', strcat('Please select the background of this image to be saved')), imshow(I, [])
@@ -81,8 +81,8 @@ kstest(croppedRegion)
 close;
 
 
-imagePath='imagesfromproj1\image02.tiff';
-[pic,crop]=image02ROI(imagePath);
+imagePath=['imagesfromproj1', filesep, 'image02.tiff'];
+[pic,crop]=image02ROI(imagePath)
 %I = imread(imagePath);
 %I=double(I);
 disp ('now')
