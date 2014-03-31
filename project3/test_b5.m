@@ -4,14 +4,16 @@
 %===============================================================================
 close all, clc
 
-%Settings
-kappa = 20;
+%===============================================================================
+% Settings
+kappa = 100;
 lambda = 0.25;
+%===============================================================================
 
 % User's image location settings
-inputDir1 = 'imagesfromproj1';
+inputDir1 = 'curve_detection_images';
 %inputDir2 = 'DrosophilaVesicleTransport';
-filename = 'image01.tiff';
+filename = 'curv_det_01.tif';
 
 %imagePath = [inputDir1, filesep, inputDir2, filesep, filename];     % Cross-platform format
 imagePath = [inputDir1, filesep, filename];     % Cross-platform format
