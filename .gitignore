@@ -42,12 +42,15 @@ Thumbs.db
 #     Stuff that might be too big to download in the future
 #===============================================================================
 *.rar
-*.tif
-*.tiff
+.tif
+.tiff
 *.avi
 
 # Stuff generated from MATLAB
 #===============================================================================
-
 # Auto-save file (same as .m)
 *.asv
+
+# Misc.
+#===============================================================================
+notes
