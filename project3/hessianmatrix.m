@@ -1,16 +1,9 @@
-% imagefilename is the file name of input image 
+% img is input image 
 % w is the width 
 % the output H is the matrix of hessian matrix for each  pixel
-function [ H ] = hessianmatrix(imagefilename, w, sigma)
+function [ H ] = hessianmatrix(img, w, sigma)
 
-clear all;
-close all;
-
-% set image path and read image
-imagepath = ['curve_detection_images\',imagefilename];
-I = imread(imagepath);
-img = double(I);
-
+img=double(img);
 % get image size
 [m,n]=size(img);
 
@@ -18,9 +11,9 @@ img = double(I);
 [x,y]=meshgrid(-w:w,-w:w);
 
 % second derivative of Guassian
-Gxx=(1/(2*pi*sigma^4))*(x.^2/sigma^2-1)*exp(-(x.^2+y.^2)/(2*sigma^2));     
-Gyy=(1/(2*pi*sigma^4))*(y.^2/sigma^2-1)*exp(-(x.^2+y.^2)/(2*sigma^2));
-Gxy=(1/(2*pi*sigma^6))*(x.*y)*exp(-(x.^2+y.^2)/(2*sigma^2));
+Gxx=((1/(2*pi*sigma^4))*(x.^2/sigma^2-1)).*exp(-(x.^2+y.^2)/(2*sigma^2));   
+Gyy=((1/(2*pi*sigma^4))*(y.^2/sigma^2-1)).*exp(-(x.^2+y.^2)/(2*sigma^2));
+Gxy=(1/(2*pi*sigma^6))*(x.*y).*exp(-(x.^2+y.^2)/(2*sigma^2));
 
 % convolve
 Ixx=conv2(img,Gxx,'same');
