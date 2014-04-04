@@ -13,6 +13,7 @@ kstests=[];
 means=[];
 stds=[];
 for i=1:numfiles
+    sepnames{i}
     back=imread(sepnames{i});
     back=double(back);
     means=[means, mean2(back)];
@@ -21,11 +22,12 @@ for i=1:numfiles
 end
 su=sum(kstests)
 
+figure
 plot(means)
-
+figure
 plot(stds)
 
-
+figure
 %% B2.2
 
 kstests2=[];
