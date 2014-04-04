@@ -20,7 +20,7 @@ for i = 1:m
         % find the position of max eigen value
         col = find(eigval==max(eigval(:)));
         %if the eigval is smaller than 0, it may be a noise and we mark it
-        if(max(eigval(:)) <= -.5)
+        if(max(eigval(:)) <= 0)
             eigNoiseMatrix(i,j) = 1;
         end
         

@@ -1,7 +1,7 @@
 % H is the output of hessianmatrix function
 % E is the output of eigenmatrix function
 function [ Xstar ] = xstarmatrix(img)
-H = hessianmatrix(img,14,4.62);
+H = hessianmatrix(img,8,4.62);
 [E,eigNoiseMatrix] = eigenmatrix(H);
 img=double(img);
 % get size of H
@@ -42,7 +42,7 @@ for i = 1:m
         Xstar(i,j) = x;
         
         % this step is to check whether xstar is within [-0.5,0.5]
-        if ((-0.5<=x && x<=0.5)==1 && (eigNoiseMatrix(i,j) ~= 1) && abs(r2) >.1)
+        if ((-0.5<=x && x<=0.5)==1 && (eigNoiseMatrix(i,j) ~= 1))
             plot(j,i,'red');
         end
     end
