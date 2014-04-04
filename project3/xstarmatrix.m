@@ -45,7 +45,7 @@ for i = 1:m
         r2val=[r2val,r2];
         
         % this step is to check whether xstar is within [-0.5,0.5]
-        if ((-0.5<=x && x<=0.5)==1 && (eigNoiseMatrix(i,j) ~= 1) && r2>.09)
+        if ((-0.5<=x && x<=0.5)==1 && (eigNoiseMatrix(i,j) ~= 1) && r2>.1)
             plot(j,i,'red');
         end
     end

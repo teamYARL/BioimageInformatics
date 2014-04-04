@@ -5,12 +5,12 @@ function [ averageimagedifference ] = pairedregionilluminationdifferencecheker(R
 
 %i decided a 10 by 10 region grid is good enough
 squareparameter=10;
-nRows=squareparameter
-nCols=squareparameter
-numsubregions=nRows*nCols
+nRows=squareparameter;
+nCols=squareparameter;
+numsubregions=nRows*nCols;
 dimensions=size(Region);
-usedheight=dimensions(1)-mod(dimensions(1),nRows)
-usedwidth=dimensions(2)-mod(dimensions(2),nCols)
+usedheight=dimensions(1)-mod(dimensions(1),nRows);
+usedwidth=dimensions(2)-mod(dimensions(2),nCols);
 subheight=usedheight/nRows;
 subwidth=usedwidth/nCols;
 
@@ -24,7 +24,7 @@ for j=1:nRows
     end
 end
 
-numregioncomparisons=nchoosek(numsubregions,2)
+numregioncomparisons=nchoosek(numsubregions,2);
 numofsigdifferences=0;
 
 for i=1:numsubregions-1
@@ -36,7 +36,7 @@ for i=1:numsubregions-1
     end
 end
 
-numofsigdifferences
+numofsigdifferences;
 
 averageimagedifference=numofsigdifferences/numregioncomparisons;
 
