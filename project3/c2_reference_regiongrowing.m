@@ -83,6 +83,3 @@ end
 % Return the segmented area as logical matrix
 J=J>1;
 
-
-
-
