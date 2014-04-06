@@ -22,9 +22,9 @@ for i=1:numfiles
 end
 su=sum(kstests)
 
-figure
+figure('Name','B.2: Noise signal distribution, mean')
 plot(means)
-figure
+figure('Name','B.2: Noise signal distribution, sd')
 plot(stds)
 
 figure

@@ -26,6 +26,10 @@ diffS = filteredImageOperation(3:rows+2, 2:cols+1) - filteredImage;
 diffE = filteredImageOperation(2:rows+1, 3:cols+2) - filteredImage;
 diffW = filteredImageOperation(2:rows+1, 1:cols) - filteredImage;
 
+% Convolution Filter
+% Sheared filter
+% Filtered and interpolated
+
 % Conduction
 conductionN = 1 ./ (1 + (diffN/kappa).^2);
 conductionS = 1 ./ (1 + (diffS/kappa).^2);

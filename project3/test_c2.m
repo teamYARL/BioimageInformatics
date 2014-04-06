@@ -50,6 +50,9 @@ figure('Name','curveBinary'), imshow(curveBinary, [])
 %joinedDotsImage = c2_reference_regiongrowing(curveDetectImage, 6, 95, 20);   % 10 pixel join
 
 joinedDotsImage = c2_reference_regiongrowing(curveDetectImage, 131, 760, 128);   % 10 pixel join
+
+
+
 figure('Name','C.2 : joined dots via region growth'), imshow(joinedDotsImage, [])
 %% Not very good looking result
 
