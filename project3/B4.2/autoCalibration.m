@@ -11,7 +11,7 @@ outputDir = 'CroppedImages';
 ratio = 10;
 
 %We count the pixel number within the black line
-%It is 20 for 60x, 30 for 100x
+%20 works for 60x, 30 works for 100x, 10 works for 10x and 20x
 distance = 30;
 
 imagePath = '100X_calib.tif'; % Path format in Windows
