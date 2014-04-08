@@ -16,14 +16,14 @@ sigma = 4.62;      % sigma >= width / sqrt(3) ~= 4.61880 if w=8
 %l = 0.25;
 %===============================================================================
 
-%% User's image location settings
-%inputDir1 = 'curve_detection_images';
-%filename = 'curv_det_01.tif';
-%
-%imagePath = [inputDir1, filesep, filename];     % Cross-platform format
-%I = imread(imagePath);
-%figure('Name','Original Image'), imshow(I, [])
-%
+% User's image location settings
+inputDir1 = 'curve_detection_images';
+filename = 'curv_det_01.tif';
+
+imagePath = [inputDir1, filesep, filename];     % Cross-platform format
+I = imread(imagePath);
+figure('Name','Original Image'), imshow(I, [])
+
 %===============================================================================
 % Diffusion method
 %===============================================================================
@@ -58,10 +58,10 @@ sigma = 4.62;      % sigma >= width / sqrt(3) ~= 4.61880 if w=8
 %joinedDotsImage = c2_reference_regiongrowing(curveDetectImage, 6, 95, 20);   % 10 pixel join
 
 %%This gets fuzzy path; require binary of test_c1
-joinedDotsImage = c2_reference_regiongrowing(curveDetectImage, 131, 760, 128);   % 10 pixel join
+%joinedDotsImage = c2_reference_regiongrowing(curveDetectImage, 131, 760, 128);   % 10 pixel join
 %===============================================================================
 
-figure('Name','C.2 : joined dots via region growth'), imshow(joinedDotsImage, [])
+%figure('Name','C.2 : joined dots via region growth'), imshow(joinedDotsImage, [])
 %% Not very good looking result with seeded growth
 
 
@@ -72,4 +72,6 @@ figure('Name','C.2 : joined dots via region growth'), imshow(joinedDotsImage, []
 %joinedDotsImage = c2_plot_method(curveDetectImage);
 %figure('Name','C.2 : joined dots'), imshow(joinedDotsImage, [])
 
+[bin] = binary_of_xstar(I, width, sigma);
+plot(bin)
 disp('Finished')

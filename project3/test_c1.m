@@ -4,11 +4,7 @@
 %===============================================================================
 close all%, clc
 
-% for smoothing
-%k = 100;
-%l = 0.25;
 %===============================================================================
-
 % User's image location settings
 inputDir1 = 'curve_detection_images';
 filename = 'curv_det_01.tif';

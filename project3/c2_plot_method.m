@@ -3,4 +3,5 @@ function [ joinedDotsImage ] = c2_plot_method( im )
 
 % Convert binaryImage to plot form (as 2-column matrix)
 
-
+% prewitt, sobel, canny
+joinedDotsImage = edge(im, 'canny');

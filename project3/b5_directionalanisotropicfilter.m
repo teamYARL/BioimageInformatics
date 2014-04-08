@@ -1,26 +1,25 @@
 function [ filteredImage ] = b5_directionalanisotropicfilter( im, sig_long, sig_lat, phi )
-%function [ filteredImage ] = b5_directionalanisotropicfilter( im, kappa, lambda )
 %B.5 (extra credit): Implementation of a directional anisotropic filter
 %   (non-iterative form)
 %   from the paper "Fast anisotropic Gaussian filtering" by Geusebroek, et al
 %   Result should: smooth signal, preserve edges, enhance edge contrast
 %
 %   im: image
-%   kappa: conduction coefficient (20-100)
-%   lambda: max value of 0.25 for stability
+%   sig_long: sigma in the longitudinal direction (=10)
+%   sig_lat: sigma in the lateral direction (=5)
+%   phi: in degrees. filter angle (=30, 60, 90, 120, 150)
 %
-%Code References:
-%   mathworks.com/matlabcentral/fileexchange/31204-anisodiff-in-matlab/content/anisodiff.m
-%   mathworks.com/matlabcentral/fileexchange/14995-anisotropic-diffusion-perona-malik/content/anisodiff_Perona-Malik/anisodiff2D.m
-%   anigauss.* from Steger, et al. paper
+%Code Reference
+%   anigauss{.c, .mexglx} from Steger, et al's paper
 
-phi_radian = phi * pi / 180;
+
+phi_rad = phi * pi / 180;   % phi in radians
 % equation 11 from paper
-sig2_long = sig_long^2;
-sig2_lat = sig_lat^2;
+sig2_u = sig_long^2;    % x convolution
+sig2_v = sig_lat^2;     % y convolution
 
-top = 0
-bottom = 0
+top = sig2_v*cos(phi_rad)^2 + sig2_u*sin(phi_rad)^2;
+bottom = (sig2_u - sig2_v) * cos(phi_rad) * sin(phi_rad);
 tanphi = top / bottom;
 
 I = double(im);
