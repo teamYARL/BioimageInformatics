@@ -58,11 +58,11 @@ figure('Name','Original Image'), imshow(I, [])
 %joinedDotsImage = c2_reference_regiongrowing(curveDetectImage, 6, 95, 20);   % 10 pixel join
 
 %%This gets fuzzy path; require binary of test_c1
-%joinedDotsImage = c2_reference_regiongrowing(curveDetectImage, 131, 760, 128);   % 10 pixel join
+joinedDotsImage = c2_reference_regiongrowing(curveDetectImage, 131, 760, 128);   % 10 pixel join
 %===============================================================================
 
-%figure('Name','C.2 : joined dots via region growth'), imshow(joinedDotsImage, [])
-%% Not very good looking result with seeded growth
+figure('Name','C.2 : joined dots via region growth'), imshow(joinedDotsImage, [])
+% Not very good looking result with seeded growth
 
 
 %===============================================================================
