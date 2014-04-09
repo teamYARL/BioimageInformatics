@@ -23,22 +23,20 @@ for i = 1:m
         f = zeros(2,1);
         f(1,1) = FX(i,j);
         f(2,1) = FY(i,j);
-       
+        
         eigenvector = E{i,j};
-        % disp('first');
-        % disp(eigenvector);
+        % traverse eigenvector
         N = zeros(1,2);
         N(1,1) = eigenvector(1);
         N(1,2) = eigenvector(2);
-        
+        % h is the hessian matrix for each pixel
         h = H{i,j};
+        % first and second directional derivative
         r1 = N*f;
-        % disp(tempr2);
-        % disp('second');
-        % disp(eigenvector);
         r2 = N*h*eigenvector;
 
         x = -r1/r2;
+        % xstar matrix
         Xstar(i,j) = x;
         
         % this step is to check whether xstar is within [-0.5,0.5]
