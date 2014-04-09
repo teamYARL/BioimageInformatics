@@ -40,7 +40,7 @@ for i = 1:m
         Xstar(i,j) = x;
 
         % this step is to check whether xstar is within [-0.5,0.5]
-        if ((-0.5<=x && x<=0.5)==1 && (eigNoiseMatrix(i,j) ~= 1) && (r2>.1))
+        if ((-0.5<=x && x<=0.5)==1 && (eigNoiseMatrix(i,j) ~= 1))
             plot(j,i,'red');
         end
     end
