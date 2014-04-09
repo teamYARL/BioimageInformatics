@@ -1,4 +1,4 @@
-function J=regiongrowing(I,x,y,reg_maxdist)
+function J=c2_reference_regiongrowing(I,x,y,reg_maxdist)
 % This function performs "region growing" in an image from a specified
 % seedpoint (x,y)
 %

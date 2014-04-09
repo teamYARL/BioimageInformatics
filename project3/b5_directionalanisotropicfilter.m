@@ -11,12 +11,15 @@ function [ filteredImage ] = b5_directionalanisotropicfilter( im, sig_long, sig_
 %
 %Code Reference
 %   anigauss{.c, .mexglx} from Steger, et al's paper
+%   canny edge detector from lecture 14's class demo (edge_demo.m)
 
+mask_size_x = 10;
+mask_size_y = mask_size_x;
 
-phi_rad = phi * pi / 180;   % phi in radians
+phi_rad = phi * pi / 180;   % convert to phi in radians
 % equation 11 from paper
-sig2_u = sig_long^2;    % x convolution
-sig2_v = sig_lat^2;     % y convolution
+sig2_u = sig_long^2;    % for x convolution
+sig2_v = sig_lat^2;     % for y convolution
 
 top = sig2_v*cos(phi_rad)^2 + sig2_u*sin(phi_rad)^2;
 bottom = (sig2_u - sig2_v) * cos(phi_rad) * sin(phi_rad);
@@ -24,42 +27,96 @@ tanphi = top / bottom;
 
 I = double(im);
 [rows, cols] = size(I);
-filteredImage = I;
+filteredImage = I;      % initialize end result
 
-filtered_x = filter_aniso(x, y, sig_lat)
-filtered_y = filter_aniso(x, y, sig_long)
-filtered_t = filter_aniso(x, y, tanphi)
-filtered_derivative = filter_aniso(x, y, phi, order)
+% x-direction
+%filtered_x = filter_aniso(x, y, sig_lat)
+filter_x = d2dgauss(mask_size_x, sig_long, mask_size_y, sig_lat, 0);
+Ix = conv2(I, filter_x, 'same');
+%figure('Name','x-direction'), imshow(Ix, [])
 
-gaussMask_x = getguasskernalmask(sig_long);
-gaussMask_y = getguasskernalmask(sig_lat);
+% t-direction
+%filtered_t = filter_aniso(x, y, tanphi)
+filter_t = d2dgauss(mask_size_x, sig_long, mask_size_y, sig_lat, phi_rad);
+It = conv2(I, filter_t, 'same');
+figure('Name','t-direction'), imshow(It, [])
+
+% Combining x and t directional derivatives (norm)
+%   method in combining taken from lecture 14's canny edge detection
+norm = sqrt(Ix.*Ix + It.*It);
+figure('Name','Combined x and t'), imshow(norm, [])
 
 
-
-%% init filteredImageOperation with padding
-%filteredImageOperation = zeros(rows+2, cols+2);
-%filteredImageOperation(2:rows+1, 2:cols+1) = filteredImage;
-%
-%% Differences
-%diffN = filteredImageOperation(1:rows, 2:cols+1) - filteredImage;
-%diffS = filteredImageOperation(3:rows+2, 2:cols+1) - filteredImage;
-%diffE = filteredImageOperation(2:rows+1, 3:cols+2) - filteredImage;
-%diffW = filteredImageOperation(2:rows+1, 1:cols) - filteredImage;
-%
-%% Convolution Filter
-%% Sheared filter
-%% Filtered and interpolated
-%
-%% Conduction
-%conductionN = 1 ./ (1 + (diffN/kappa).^2);
-%conductionS = 1 ./ (1 + (diffS/kappa).^2);
-%conductionE = 1 ./ (1 + (diffE/kappa).^2);
-%conductionW = 1 ./ (1 + (diffW/kappa).^2);
-%
-%% Apply four-point-template
-%filteredImage = filteredImage + lambda*(conductionN.*diffN + conductionS.*diffS + conductionE.*diffE + conductionW.*diffW);
-
-figure('Name','Directional Anisotropic Filtered Image'),
-imshow(filteredImage, [])
+%figure('Name','Directional Anisotropic Filtered Image'),
+%imshow(filteredImage, [])
 
 end
+
+
+% Directional 2D gauss from lecture 14 with modifications
+%%%%%%% The functions used in the main.m file %%%%%%%
+% Function "d2dgauss.m":
+% This function returns a 2D edge detector (first order derivative
+% of 2D Gaussian function) with size n1*n2; theta is the angle that
+% the detector rotated counter clockwise; and sigma1 and sigma2 are the
+% standard deviation of the gaussian functions.
+function h = modX_d2dgauss(n1,sigma1,n2,sigma2,theta)
+r=[cos(theta)  sin(theta);  %changed
+  -sin(theta)  cos(theta)];
+for i = 1 : n2 
+    for j = 1 : n1
+        x = j-(n1+1)/2;     %changed
+        y = i;              %changed
+        u = r * [x ; y];
+        h(i,j) = gauss(u(1),sigma1)*dgauss(u(2),sigma2);     %changed
+    end
+end
+h = h / sqrt(sum(sum(abs(h).*abs(h))));
+end
+
+function h = mod_d2dgauss(n1,sigma1,n2,sigma2,theta)
+r=[cos(theta)  sin(theta);
+  -sin(theta)  cos(theta)];
+
+sig2_u = sigma1^2;    % for x convolution
+sig2_v = sigma2^2;    % for y convolution
+
+top = sig2_v*cos(theta)^2 + sig2_u*sin(theta)^2;
+bottom = (sig2_u - sig2_v) * cos(theta) * sin(theta);
+tantheta = top / bottom;
+
+for i = 1 : n2 
+    for j = 1 : n1
+        x = j/tantheta-(n1+1)/2; %different from paper
+        y = i-(n2+1)/2;
+        u = r * [x ; y];
+        h(i,j) = gauss(u(1),sigma1)*dgauss(u(2),sigma2);
+    end
+end
+h = h / sqrt(sum(sum(abs(h).*abs(h))));
+end
+
+function h = d2dgauss(n1,sigma1,n2,sigma2,theta)
+r=[cos(theta)  sin(theta);
+  -sin(theta)  cos(theta)];
+for i = 1 : n2 
+    for j = 1 : n1
+        x = j-(n1+1)/2; %different from paper
+        y = i-(n2+1)/2;
+        u = r * [x ; y];
+        h(i,j) = gauss(u(1),sigma1)*dgauss(u(2),sigma2);
+    end
+end
+h = h / sqrt(sum(sum(abs(h).*abs(h))));
+end
+
+% Function "gauss.m":
+function y = gauss(x,std)
+y = exp(-x^2/(2*std^2)) / (std*sqrt(2*pi));
+end
+
+% Function "dgauss.m"(first order derivative of gauss function):
+function y = dgauss(x,std)
+y = -x * gauss(x,std) / std^2;
+end
+%%%%%%%%%%%%%% end of the functions %%%%%%%%%%%%%
