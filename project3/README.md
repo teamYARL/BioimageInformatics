@@ -8,7 +8,7 @@ Instructions
 For B.2, run `test_b2.m` by first cropping a background region.  
 
 For B.3, run `bdotthree_checkimageilluminationbackgrounduniformity.m`  
-run `checkimageilluminationbackgrounduniformity.m`  
+run `checkimageilluminationbackgrounduniformity.m`  for image sequence-plot for illumination
 (Please change imagePath inside these .m file if checking illumination for other images)  
 
 For B.4.1, run `manualcalibration.m` as the way shown in ducumentation in `manualcalibration.m`  
