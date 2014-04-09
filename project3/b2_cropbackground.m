@@ -6,7 +6,7 @@
 inputDir1 = 'microscope_char';
 inputDir2 = 'DrosophilaVesicleTransport';
 filename = 'APPYFPX_Lgt_a07r10s01_001.tif';
-outputDir = 'CroppedImages';
+outputDir = 'CroppedImages_2';
 
 imagePath = [inputDir1, filesep, inputDir2, filesep, filename];     % Cross-platform format
 I = imread(imagePath);

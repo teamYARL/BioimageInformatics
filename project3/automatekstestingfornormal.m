@@ -56,8 +56,8 @@ spacemeans=[];
 spacestds=[];
 samples=cell(1,5);
 imagePath=['microscope_char', filesep, 'DrosophilaVesicleTransport', filesep, 'APPYFPX_Lgt_a07r10s01_001.tif'];
-I=double(I);
 I = imread(imagePath);
+I=double(I);
 for sample=1:5
 figure('Name', strcat('Please select the background of this image to be saved - sample: ',int2str(sample))), imshow(I, [])
 
