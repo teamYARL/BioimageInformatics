@@ -1,16 +1,23 @@
-% H is the output of hessianmatrix function
-% E is the output of eigenmatrix function
-function [ Xstar_bin ] = xstarmatrix_general(img, w, sigma)
+function [ Xstar_bin, Xstar_mag ] = xstarmatrix_general(img, w, sigma)
+%Output
+%   Xstar_bin is a (x,y) coordinates of x*
+%   Xstar_mag is the magnitude of x*
+% This function is used in question C.2
+
 H = hessianmatrix(img, w, sigma);
 [E,eigNoiseMatrix] = eigenmatrix(H);
 img=double(img);
 % get size of H
 [m,n] = size(img);
-Xstar = zeros(m,n);
+Xstar = zeros(m,n);     % notation: zeros(col,row)
 
 [FX,FY] = gradient(img);
 
-Xstar_bin = zeros(m,n);
+Xstar_x = [1:n];
+Xstar_x = Xstar_x';
+Xstar_y = zeros(n,1);    % to be filled of height n within x* loop
+% to be combined to Xstar_bin when exiting loop
+Xstar_mag = zeros(n,1);  % magnitude of x* corresponding to Xstar_bin coordinates
 
 % create a whole black image with same size to check marked xstar
 I = zeros(m,n);
@@ -43,12 +50,15 @@ for i = 1:m
         Xstar(i,j) = x;
 
         % this step is to check whether xstar is within [-0.5,0.5]
-        if ((-0.5<=x && x<=0.5)==1 && (eigNoiseMatrix(i,j) ~= 1))
+        if ((-0.5<=x && x<=0.5)==1 && (eigNoiseMatrix(i,j) ~= 1) && (r2>.1))
             plot(j,i,'red');
-            Xstar_bin(i,j) = 1;
+            Xstar_y(j) = i;
+            Xstar_mag(j) = x;
         end
     end
 end
 
-
 hold off
+
+Xstar_bin = [Xstar_x, Xstar_y];     % 2-column matrix (x,y)
+figure('Name','x* bin'), plot(Xstar_bin(:,1), Xstar_bin(:,2), 'k.')

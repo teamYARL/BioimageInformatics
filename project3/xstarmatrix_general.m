@@ -23,7 +23,7 @@ for i = 1:m
         f = zeros(2,1);
         f(1,1) = FX(i,j);
         f(2,1) = FY(i,j);
-        
+
         eigenvector = E{i,j};
         % traverse eigenvector
         N = zeros(1,2);
@@ -38,9 +38,9 @@ for i = 1:m
         x = -r1/r2;
         % xstar matrix
         Xstar(i,j) = x;
-        
+
         % this step is to check whether xstar is within [-0.5,0.5]
-        if ((-0.5<=x && x<=0.5)==1 && (eigNoiseMatrix(i,j) ~= 1))
+        if ((-0.5<=x && x<=0.5)==1 && (eigNoiseMatrix(i,j) ~= 1) && (r2>.1))
             plot(j,i,'red');
         end
     end

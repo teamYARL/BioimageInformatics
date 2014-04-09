@@ -72,6 +72,5 @@ figure('Name','Original Image'), imshow(I, [])
 %joinedDotsImage = c2_plot_method(curveDetectImage);
 %figure('Name','C.2 : joined dots'), imshow(joinedDotsImage, [])
 
-[bin] = binary_of_xstar(I, width, sigma);
-plot(bin)
+[Xstar_coord, Xstar_mag] = binary_of_xstar(I, width, sigma);
 disp('Finished')
