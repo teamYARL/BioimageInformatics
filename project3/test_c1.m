@@ -19,7 +19,7 @@ sigma = ApplyStegersAlgor(img);   % calculate sigma by obtaining line width
 width = ceil(3*sigma);   % get the range for convolve
 
 
-curveDetectImage = I;
+curveDetectImage = img;
 
 %curveDetectImage = b5_directionalanisotropicfilter(curveDetectImage, k, l);
 % ordering of imshow() changed to compensate for xstarmatrix() plotting behavior
