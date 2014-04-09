@@ -7,14 +7,12 @@ clear all, close all
 
 outputDir = 'CroppedImages';
 
-%Adjust the ratio value here, like 2 for 20x, 6 for 60x, 10 for 100x
-ratio = 10;
 
-%We count the pixel number within the black line
-%20 works for 60x, 30 works for 100x, 10 works for 10x and 20x
-distance = 30;
+%We count the pixel number within the black segments as its width
+%It is 20 for 60x, 30 for 100x, 10 for 10x and 20x
+width = 10;
 
-imagePath = '100X_calib.tif'; % Path format in Windows
+imagePath = '10x_calib.tif'; % Path format in Windows
 %imagePath = '2/images/001_a5_002_t001.tif'; % Path format in OSX/Linux
 
 
@@ -97,7 +95,7 @@ tmp2 = [];
 sizeX = size(X);
 for i = 2:sizeX(2)
     
-    if(abs(X(i)-base) < distance)  % distance is the line width of black line
+    if(abs(X(i)-base) < width)  % distance is the line width of black line
         %disp('entering if case');
         tmp = [tmp X(i)];
         %disp('if case above');
@@ -121,11 +119,12 @@ for i = 2:size2(2)
         
 end
 
-%disp(tmpDistance);
+disp(mean(tmpDistance));
 
-result = 0.01*10^-3/mean(tmpDistance);
+%0.01mm is the distance between two divisions
+result = 0.01/(1000*mean(tmpDistance));
 
-result = result *ratio;
+
 
 disp(result);
 
