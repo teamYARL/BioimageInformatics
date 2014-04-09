@@ -6,7 +6,7 @@ The files for Project Assignment #3 from BlackBoard are in this folder.
 
 For B.2, run test_b2.m by first cropping a background region.
 
-For B.3, run bdotthree_checkimageilluminationbackgrounduniformity.m, 
+For B.3, run bdotthree_checkimageilluminationbackgrounduniformity.m, to do this on another image, edit the file path on the first line of this file.
 
 For B.4.1, run manualcalibration.m as the way shown in ducumentation in manualcalibration.m
 
