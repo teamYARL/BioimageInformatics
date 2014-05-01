@@ -5,12 +5,12 @@ clc, close all
 %===============================================================================
 % Settings
 %===============================================================================
-propagationScaling = 1.4
-curvatureScaling = 1
-setMaximumRMSError = 2
-setNumberOfIterations = 20
+propagationScaling = 1.4;
+curvatureScaling = 1;
+setMaximumRMSError = 2;
+setNumberOfIterations = 20;
 
-settings = [propagationScaling curvatureScaling setMaximumRMSError setNumberOfIterations]
+settings = [propagationScaling curvatureScaling setMaximumRMSError setNumberOfIterations];
 
 
 %===============================================================================
@@ -32,6 +32,9 @@ D = zeros(imgSize(1),imgSize(2),2);
 D(1:imgSize(1),1:imgSize(2),1) = Img(1:imgSize(1),1:imgSize(2));
 D(1:imgSize(1),1:imgSize(2),2) = Img(1:imgSize(1),1:imgSize(2));
 
+% for SSDLS, it requires a gradient of the image
+gD = gradient(D);
+
 % implement segmentation using SSDLS
-SegmentedImage = matitk('SSDLS', settings, uint8(FeatureImage), uint8(GradientImage), []);
+SegmentedImage = matitk('SSDLS', settings, D, gD, []);
 figure('Name','SSDLS segmented image'); imagesc(squeeze(segmentedImage(:,:,1))); colormap gray; axis off; axis equal;
