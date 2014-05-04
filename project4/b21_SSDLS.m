@@ -5,20 +5,26 @@ clc, close all
 %===============================================================================
 % Settings
 %===============================================================================
-propagationScaling = 1.4;
+propagationScaling = 2;
 curvatureScaling = 1;
-setMaximumRMSError = 2;
-setNumberOfIterations = 20;
+setMaximumRMSError = 5;
+setNumberOfIterations = 2;
+
+%propagationScaling = 1.4;
+%curvatureScaling = 1;
+%setMaximumRMSError = 2;
+%setNumberOfIterations = 20;
 
 settings = [propagationScaling curvatureScaling setMaximumRMSError setNumberOfIterations];
+
+filename = '60x_02.tif';
+%filename = 'Blue0001.tif';
 
 
 %===============================================================================
 % SSDLS (ShapeDetectionLevelSetFilter)
 %===============================================================================
 % load image and get the size of this image
-%filename = 'Blue0001.tif';
-filename = 'image01.tiff';
 Img = double(imread(filename));
 imgSize = size(Img);
 
@@ -36,5 +42,7 @@ D(1:imgSize(1),1:imgSize(2),2) = Img(1:imgSize(1),1:imgSize(2));
 gD = gradient(D);
 
 % implement segmentation using SSDLS
-SegmentedImage = matitk('SSDLS', settings, D, gD, []);
-figure('Name','SSDLS segmented image'); imagesc(squeeze(segmentedImage(:,:,1))); colormap gray; axis off; axis equal;
+segmentedImage = matitk('SSDLS', [1.4 1 2 20], uint8(D), uint8(gD), []);
+figure('Name','SSDLS segmented image')
+imagesc(squeeze(segmentedImage(:,:,1)))
+colormap gray; axis off; axis equal;
