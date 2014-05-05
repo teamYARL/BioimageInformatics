@@ -6,17 +6,17 @@ clc, close all
 % Settings
 %   Adjust position of variable `max_numOfx` on line 45, setting inside the loop
 %===============================================================================
-max_propagationScaling = 5;
-max_curvatureScaling = 5;
+max_propagationScaling = 10;
+max_curvatureScaling = 10;
 max_setMaximumRMSError = 5;
 max_setNumberOfIterations = 10;
 
-%filename = '60x_02.tif';
-filename = 'Blue0001.tif';
+filename = '60x_02.tif';
+%filename = 'Blue0001.tif';
 
 % Name for saving
-%name_out = '60x_02';
-name_out = 'Blue0001';
+name_out = '60x_02';
+%name_out = 'Blue0001';
 
 
 %===============================================================================

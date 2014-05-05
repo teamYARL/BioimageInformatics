@@ -1,0 +1,3 @@
+The direction it extends matter a lot, since it decide how it distinguish the background and particals we are detecting, sometimes two directions may lead to a significant particle while extention from one direction may lead to no thing left.
+
+some issues when detecting the bourdry
