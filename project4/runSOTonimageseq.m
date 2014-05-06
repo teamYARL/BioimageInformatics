@@ -24,6 +24,8 @@ for i = 1:length(structOfImages)
     filenameOut = ['SOT_SEG_', filename];
     filePathOut = [outputDir, filesep, filenameOut];
     
+    filenameOut
+    
     imagePath = [inputDir1, filesep, filename];
     Img = double(imread(imagePath));
     %if i==1

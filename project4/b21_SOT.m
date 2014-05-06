@@ -33,7 +33,7 @@ imgSize = size(Img);
 figure('Name','Original image'); imagesc(Img); colormap gray; axis off; axis equal;
 
 for i=2:(maxintensity-2)/10:maxintensity
-    numOfHistograms = i
+    numOfHistograms = round(i)
     % in order to use matitk, we have to use 3D data
     % so we first build a 3D volume of two layers, and each layer
     % contains the original image
