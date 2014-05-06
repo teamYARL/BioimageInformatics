@@ -43,7 +43,7 @@ Thumbs.db
 *.rar
 *.tif
 *.tiff
-*.avi
+#*.avi
 
 # Stuff generated from MATLAB
 #===============================================================================
