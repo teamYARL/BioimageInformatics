@@ -1,3 +1,10 @@
-The direction it extends matter a lot, since it decide how it distinguish the background and particals we are detecting, sometimes two directions may lead to a significant particle while extention from one direction may lead to no thing left.
+run pipeline.m to get the results for different image inputs. 
 
-some issues when detecting the bourdry
+adjust the parameters within the test.m file.
+
+
+There are several folder under which there are intermediate contour image and results.
+
+
+
+
