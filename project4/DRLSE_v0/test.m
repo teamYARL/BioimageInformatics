@@ -1,4 +1,4 @@
-function test(filename)
+function test(filename, filePathOut)
 %  This Matlab code demonstrates an edge-based active contour model as an application of 
 %  the Distance Regularized Level Set Evolution (DRLSE) formulation in the following paper:
 %
@@ -22,7 +22,7 @@ Img=double(Img(:,:,1));
 timestep=5;  % time step
 mu=0.2/timestep;  % coefficient of the distance regularization term R(phi)
 iter_inner=5;
-iter_outer=100;
+iter_outer=25;
 lambda=5; % coefficient of the weighted length term L(phi)
 alfa=1.5;  % coefficient of the weighted area term A(phi)
 epsilon=1.5; % papramater that specifies the width of the DiracDelta function
@@ -38,8 +38,23 @@ g=1./(1+f);  % edge indicator function.
 c0=2;
 initialLSF=c0*ones(size(Img));
 % generate the initial region R0 as a rectangle
-initialLSF(50:150, 10:299)=-c0;  
-%initialLSF(50:150, 200:299)=-c0; 
+
+initialLSF(80:95, 6:600)=-c0;  
+
+%initialLSF(1:100,5:130)=-c0;     for Blue0001
+%initialLSF(105:223,5:130)=-c0;
+%initialLSF(1:110,140:295)=-c0;
+%initialLSF(115:223,140:290)=-c0;
+ 
+%initialLSF(100:105,145:153)=-c0;  for 60x
+%initialLSF(100:105,165:173)=-c0;
+%initialLSF(80:85,145:153)=-c0;
+%initialLSF(80:85,165:173)=-c0;
+
+%initialLSF(10:20,40:50)=-c0;      for 60x
+%initialLSF(10:40,240:270)=-c0;
+%initialLSF(145:175,40:70)=-c0;
+%initialLSF(145:175,240:260)=-c0;
 
 phi=initialLSF;
 
@@ -71,14 +86,20 @@ for n=1:iter_outer
         figure(2);
         imagesc(Img,[0, 255]); axis off; axis equal; colormap(gray); hold on;  contour(phi, [0,0], 'r');
         
-        size(Img)
+        %size(Img);
+        %size(phi)
         
-        filenameOut = ['evolution_',num2str(n, '%03d\n'),'.tif'];
-        filePathOut = ['result', filesep, filenameOut];
-        if ~exist('result', 'dir')
-            mkdir('result');
+        %filenameOut = ['evolution_',num2str(n, '%03d\n'),'.tif'];
+        %filePathOut = ['result', filesep, filenameOut];
+        
+        %if ~exist('result', 'dir')
+         %   mkdir('result');
+        %end
+        
+        %imwrite(phi, filePathOut, 'tif', 'Compression','none');
+        if n == iter_outer
+            imwrite(phi, filePathOut, 'tif', 'Compression','none');
         end
-        imwrite(Img, filePathOut, 'tif');
     end
 end
 
@@ -101,5 +122,6 @@ hold on;  contour(phi, [0,0], 'r','LineWidth',2);
 str=['Final level set function, ', num2str(iter_outer*iter_inner+iter_refine), ' iterations'];
 title(str);
 axis on;
+
 
 
